@@ -10,6 +10,8 @@ export const InputForm = ( {taskList, setTaskList} ) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    if (inputText === "") return;
+
     setTaskList([
         ...taskList,
         {
