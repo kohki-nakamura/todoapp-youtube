@@ -6,6 +6,8 @@ export const InputForm = ( {taskList, setTaskList} ) => {
   const handleSubmit = (e) => {
     e.preventDefault(); // submit後のレンダリングを解除
 
+    if (inputText === "") return;
+
     setTaskList([
       ...taskList,
       {
