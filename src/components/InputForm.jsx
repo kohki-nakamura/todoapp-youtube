@@ -1,10 +1,29 @@
-import React from 'react'
+import React, { useState } from 'react'
 
-export const InputForm = () => {
+export const InputForm = ( {taskList, setTaskList} ) => {
+  const [inputText, setInputText] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault(); // submit後のレンダリングを解除
+
+    setTaskList([
+      ...taskList,
+      {
+        text: inputText
+      }
+    ]);
+
+    setInputText("");
+  }
+
+  const handleChange = (e) => {
+    setInputText(e.target.value);
+  }
+
   return (
     <div className="inputForm">
-      <form>
-        <input type="text" />
+      <form onSubmit={handleSubmit}>
+        <input type="text" onChange={handleChange} value={inputText} />
         <button>
           <i className="fa-solid fa-plus"></i>
         </button>
