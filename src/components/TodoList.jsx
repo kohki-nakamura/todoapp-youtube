@@ -5,17 +5,34 @@ export const TodoList = ( {taskList, setTaskList} ) => {
     setTaskList(taskList.filter((task) => task.id !== id))
   }
 
+  const handleCompleted = (id) => {
+    setTaskList(
+      taskList.map((task) => {
+        if (task.id === id) {
+          return (
+            {
+              ...task,
+              completed: !task.completed
+            }
+          );
+        } else {
+          return task;
+        }
+      })
+    );
+  }
+
   return (
     <div className="todoList">
       <div className="todos">
 
         {taskList.map((task, index) => (
-          <div className="todo" key={index}>
+          <div className={`todo ${task.completed ? "completed" : ""}`} key={index}>
             <div className="todoText">
               <span>{task.text}</span>
             </div>
             <div className="icons">
-              <button>
+              <button onClick={() => handleCompleted(task.id)}>
                 <i className="fa-solid fa-check"></i>
               </button>
               <button onClick={() => handleDelete(task.id)}>
