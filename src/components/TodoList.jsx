@@ -1,6 +1,10 @@
 import React from 'react'
 
 export const TodoList = ( {taskList, setTaskList} ) => {
+  const handleDelete = (id) => {
+    setTaskList(taskList.filter((task) => task.id !== id))
+  }
+
   return (
     <div className="todoList">
       <div className="todos">
@@ -14,7 +18,7 @@ export const TodoList = ( {taskList, setTaskList} ) => {
               <button>
                 <i className="fa-solid fa-check"></i>
               </button>
-              <button>
+              <button onClick={() => handleDelete(task.id)}>
                 <i className="fa-solid fa-trash"></i>
               </button>
             </div>
